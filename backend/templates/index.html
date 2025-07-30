@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unveiling The Unreal - Deepfake Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-shield-alt me-2"></i>
+                Unveiling The Unreal
+            </a>
+            <span class="navbar-text">
+                <small>Advanced LSTM-based Deepfake Detection</small>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+        <!-- Hero Section -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="hero-section p-5 rounded-4 mb-4">
+                    <h1 class="display-4 fw-bold mb-3 gradient-text">
+                        <i class="fas fa-brain me-3"></i>
+                        Deepfake Detection System
+                    </h1>
+                    <p class="lead mb-4">Advanced LSTM Neural Network for Real-time Deepfake Face Detection</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <span class="badge bg-gradient-primary px-3 py-2">
+                            <i class="fas fa-robot me-1"></i> LSTM Neural Network
+                        </span>
+                        <span class="badge bg-gradient-success px-3 py-2">
+                            <i class="fas fa-eye me-1"></i> Face Detection
+                        </span>
+                        <span class="badge bg-gradient-warning px-3 py-2">
+                            <i class="fas fa-bolt me-1"></i> Real-time Analysis
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card bg-secondary h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-database fa-2x text-primary mb-2"></i>
+                        <h6>Dataset Status</h6>
+                        <span id="dataset-status" class="badge bg-secondary">Not Loaded</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-secondary h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-cogs fa-2x text-warning mb-2"></i>
+                        <h6>Training Status</h6>
+                        <span id="training-status" class="badge bg-secondary">Not Started</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-secondary h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-brain fa-2x text-success mb-2"></i>
+                        <h6>Model Status</h6>
+                        <span id="model-status" class="badge bg-secondary">Not Ready</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-secondary h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-line fa-2x text-info mb-2"></i>
+                        <h6>Accuracy</h6>
+                        <span id="accuracy-display" class="badge bg-secondary">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Interface -->
+        <div class="row">
+            <!-- Left Column - Dataset & Training -->
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-secondary h-100">
+                    <div class="card-header bg-primary">
+                        <h5 class="mb-0">
+                            <i class="fas fa-upload me-2"></i>
+                            Dataset & Training
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Dataset Upload -->
+                        <div class="mb-4">
+                            <h6><i class="fas fa-database me-2"></i>Upload Dataset</h6>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="dataset-file" accept=".csv">
+                                <button class="btn btn-primary" type="button" onclick="uploadDataset()">
+                                    <i class="fas fa-upload"></i> Upload CSV
+                                </button>
+                            </div>
+                            <small class="text-muted">Upload CSV file with 'videoname' and 'label' columns</small>
+                        </div>
+
+                        <!-- Training Section -->
+                        <div class="mb-4">
+                            <h6><i class="fas fa-brain me-2"></i>Train LSTM Model</h6>
+                            <button id="train-btn" class="btn btn-success w-100 mb-3" onclick="trainModel()" disabled>
+                                <i class="fas fa-play me-2"></i>Start Training
+                            </button>
+                            
+                            <!-- Training Progress -->
+                            <div id="training-progress" class="d-none">
+                                <div class="progress mb-2" style="height: 25px;">
+                                    <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
+                                         role="progressbar" style="width: 0%">0%</div>
+                                </div>
+                                <small class="text-muted">Training in progress...</small>
+                            </div>
+                        </div>
+
+                        <!-- Model Metrics -->
+                        <div id="metrics-section" class="d-none">
+                            <h6><i class="fas fa-chart-bar me-2"></i>Model Performance</h6>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="metric-card p-2 text-center">
+                                        <div class="metric-value" id="accuracy-metric">-</div>
+                                        <div class="metric-label">Accuracy</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="metric-card p-2 text-center">
+                                        <div class="metric-value" id="precision-metric">-</div>
+                                        <div class="metric-label">Precision</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="metric-card p-2 text-center">
+                                        <div class="metric-value" id="recall-metric">-</div>
+                                        <div class="metric-label">Recall</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="metric-card p-2 text-center">
+                                        <div class="metric-value" id="f1-metric">-</div>
+                                        <div class="metric-label">F1-Score</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Detection -->
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-secondary h-100">
+                    <div class="card-header bg-info">
+                        <h5 class="mb-0">
+                            <i class="fas fa-search me-2"></i>
+                            Deepfake Detection
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Media Upload -->
+                        <div class="mb-4">
+                            <h6><i class="fas fa-video me-2"></i>Upload Media</h6>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="media-file" 
+                                       accept="image/*,video/*">
+                                <button class="btn btn-info" type="button" onclick="detectDeepfake()" 
+                                        id="detect-btn" disabled>
+                                    <i class="fas fa-search"></i> Analyze
+                                </button>
+                            </div>
+                            <small class="text-muted">Upload image (JPG, PNG) or video (MP4, AVI, MOV)</small>
+                        </div>
+
+                        <!-- Analysis Progress -->
+                        <div id="analysis-progress" class="d-none mb-4">
+                            <div class="text-center">
+                                <div class="spinner-border text-info mb-2" role="status">
+                                    <span class="visually-hidden">Analyzing...</span>
+                                </div>
+                                <p class="mb-0">Analyzing media for deepfake detection...</p>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div id="results-section" class="d-none">
+                            <h6><i class="fas fa-chart-line me-2"></i>Detection Results</h6>
+                            <div class="result-card p-4 rounded-3">
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="result-item">
+                                            <div class="result-value" id="prediction-result">-</div>
+                                            <div class="result-label">Prediction</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="result-item">
+                                            <div class="result-value" id="confidence-result">-</div>
+                                            <div class="result-label">Confidence</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="result-item">
+                                            <div class="result-value" id="time-result">-</div>
+                                            <div class="result-label">Time (s)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Log -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-dark">
+                    <div class="card-header bg-secondary">
+                        <h6 class="mb-0">
+                            <i class="fas fa-terminal me-2"></i>
+                            System Console
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="console-log" class="console-log p-3">
+                            <div class="log-entry">System ready. Please upload dataset to begin.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
