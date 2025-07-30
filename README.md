@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
 
-## Project info
+## **Deepfake Face Detection System (Web Version)**
 
-**URL**: https://lovable.dev/projects/823d4129-beb7-4e77-8ef4-10824223f180
+```markdown
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/823d4129-beb7-4e77-8ef4-10824223f180) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![Framework](https://img.shields.io/badge/Framework-Flask-lightgrey.svg)
+![Frontend](https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS%20%7C%20Bootstrap-green.svg)
+![Libraries](https://img.shields.io/badge/Libraries-OpenCV%20%7C%20TensorFlow%20%7C%20Keras-orange.svg)
+![ML](https://img.shields.io/badge/Model-CNN%2BLSTM-red.svg)
 ```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+### **🔹 Overview**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The **Deepfake Face Detection System** is a web-based application designed to detect deepfake videos by analyzing facial regions and learning temporal-spatial features. The system uses a hybrid model combining **CNN (ResNeXt)** and **LSTM** to process extracted frames and predict authenticity.
 
-## What technologies are used for this project?
+This project was originally a Python GUI application (Tkinter) and has now been converted into a fully functional **web application** using **Flask** for seamless deployment and accessibility.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### **✨ Features**
 
-## How can I deploy this project?
+* Upload video files and detect if they are deepfakes.
+* Extracts frames using **Haar Cascade** face detection.
+* Uses **ResNeXt (CNN)** for spatial feature extraction.
+* **LSTM** captures temporal features across frames.
+* Displays prediction results with confidence scores.
+* Real-time metrics logging (Prometheus + Grafana integration).
 
-Simply open [Lovable](https://lovable.dev/projects/823d4129-beb7-4e77-8ef4-10824223f180) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+### **🛠️ Tech Stack**
 
-Yes, you can!
+* **Frontend:** HTML, CSS, Bootstrap (Responsive UI)
+* **Backend:** Flask (Python)
+* **ML Model:** TensorFlow/Keras (ResNeXt + LSTM)
+* **Utilities:** OpenCV, NumPy, Pandas
+* **Monitoring:** Prometheus, Grafana (optional)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### **⚡ Installation & Setup**
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Shashankkota/Deepfake-Face-Detection-System.git
+   cd Deepfake-Face-Detection-System
+   ```
+
+2. **Create and activate a virtual environment (optional but recommended):**
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # For Linux/Mac
+   venv\Scripts\activate      # For Windows
+   ```
+
+3. **Install dependencies:**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the application:**
+
+   ```bash
+   python app.py
+   ```
+
+5. **Access the app in your browser:**
+
+   ```
+   http://127.0.0.1:5000/
+   ```
+
+---
+
+
+
+---
+
