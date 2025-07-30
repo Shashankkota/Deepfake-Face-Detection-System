@@ -39,7 +39,6 @@ This project was originally a Python GUI application (Tkinter) and has now been 
 ## **⚡ Installation & Setup**  
 
 1. **Clone the repository:**  
-   ```bash
    git clone https://github.com/Shashankkota/Deepfake-Face-Detection-System.git
    cd Deepfake-Face-Detection-System
 ````
@@ -76,9 +75,6 @@ This project was originally a Python GUI application (Tkinter) and has now been 
 
 This system supports **Prometheus metric logging**. You can set up Grafana dashboards to visualize model usage, latency, and accuracy trends. Refer to the `monitoring_setup.md` (if provided) for step-by-step instructions.
 
----
 
-
----
 
 
