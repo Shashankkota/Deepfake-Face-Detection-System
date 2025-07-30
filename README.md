@@ -41,40 +41,21 @@ This project was originally a Python GUI application (Tkinter) and has now been 
 1. **Clone the repository:**  
    git clone https://github.com/Shashankkota/Deepfake-Face-Detection-System.git
    cd Deepfake-Face-Detection-System
-````
+```
 
-2. **Create and activate a virtual environment (optional but recommended):**
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # For Linux/Mac
-   venv\Scripts\activate      # For Windows
-   ```
-
-3. **Install dependencies:**
+2. **Install dependencies:**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Run the application:**
+3. **Run the application:**
 
    ```bash
    python app.py
    ```
 
-5. **Access the app in your browser:**
-
-   ```
-   http://127.0.0.1:5000/
-   ```
-
----
-
-## **📊 Grafana Monitoring (Optional)**
-
-This system supports **Prometheus metric logging**. You can set up Grafana dashboards to visualize model usage, latency, and accuracy trends. Refer to the `monitoring_setup.md` (if provided) for step-by-step instructions.
-
-
+````
 
 
