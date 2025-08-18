@@ -32,7 +32,7 @@ This project was originally a Python GUI application (Tkinter) and has now been 
 - **Backend:** Flask (Python)  
 - **ML Model:** TensorFlow/Keras (ResNeXt + LSTM)  
 - **Utilities:** OpenCV, NumPy, Pandas  
-- **Monitoring:** Prometheus, Grafana (optional)  
+- **Monitoring:** Prometheus, Grafana will be implemented Soon
 
 ---
 
